@@ -83,9 +83,9 @@ void skip_destroy(skip_t *dict)
 
     node_t *aux = dict->upleft, *prev;
     dict->upleft = dict->upleft->down;
-    while (dict->upleft != NULL)
+    while (dict->upleft)
     {
-        while (aux != NULL)
+        while (aux)
         {
             prev = aux;
             aux = aux->next;
@@ -96,6 +96,7 @@ void skip_destroy(skip_t *dict)
         aux = dict->upleft;
         dict->upleft = dict->upleft->down;
     }
+    free(dict);
     return;
 }
 
@@ -169,6 +170,7 @@ void skip_insert(skip_t *dict, char *str1, char *str2)
         }
         dict->level = randomLevel;
     }
+    free(updates);
 }
 
 void skip_change(skip_t *dict, char *str1, char *str2)
@@ -232,6 +234,8 @@ void skip_remove(skip_t *dict, char *str1)
         {
             node_t *rem = updates[i]->next;
             updates[i]->next = rem->next;
+            free(rem->word);
+            free(rem->def);
             free(rem);
         }
         i++;
@@ -241,10 +245,13 @@ void skip_remove(skip_t *dict, char *str1)
     while (!dict->upleft->next && dict->upleft->down)
     {
         node_t *rem = dict->upleft;
+        free(rem->word);
+        free(rem->def);
         free(rem);
         dict->upleft = dict->upleft->down;
         dict->level--;
     }
+    free(updates);
 }
 
 node_t *word_search(skip_t *dict, char *str1)
@@ -292,7 +299,7 @@ void skip_print(skip_t *dict, char ch1)
     if (!dict)
         return;
     node_t *x = dict->upleft;
-    int flag = 0; 
+    int flag = 0;
 
     //Busca
     while (x && x->level > 0)
