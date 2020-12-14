@@ -151,23 +151,23 @@ void treap_print(node_t *root, char *mode)
 		return;
 	switch (mode[2])
 	{
-    case 'd': //emOrdem
-    inOrder(root);
-    break;
-    case 's': //posOrdem
-    postOrder(root);
-    break;
-    case 'e': //preOrdem
-    preOrder(root);
-    break;
-    case 'r': //Largura
-    bfs(root);
-    break;
-    default:
-    break;
-}
-printf("\n");
-return;
+	    case 'd': //emOrdem
+	    inOrder(root);
+	    break;
+	    case 's': //posOrdem
+	    postOrder(root);
+	    break;
+	    case 'e': //preOrdem
+	    preOrder(root);
+	    break;
+	    case 'r': //Largura
+	    bfs(root);
+	    break;
+	    default:
+	    break;
+	}
+	printf("\n");
+	return;
 }
 
 node_t *treap_remove(node_t *root, int x, int prioridade)
