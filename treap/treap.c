@@ -152,19 +152,19 @@ void treap_print(node_t *root, char *mode)
 	switch (mode[2])
 	{
 	    case 'd': //emOrdem
-	    inOrder(root);
-	    break;
+		    inOrder(root);
+		    break;
 	    case 's': //posOrdem
-	    postOrder(root);
-	    break;
+		    postOrder(root);
+		    break;
 	    case 'e': //preOrdem
-	    preOrder(root);
-	    break;
+		    preOrder(root);
+		    break;
 	    case 'r': //Largura
-	    bfs(root);
-	    break;
+		    bfs(root);
+		    break;
 	    default:
-	    break;
+	    	break;
 	}
 	printf("\n");
 	return;
